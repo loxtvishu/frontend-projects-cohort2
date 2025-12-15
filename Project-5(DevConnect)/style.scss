@@ -1,0 +1,183 @@
+/* --- 1. Variables (Design System) --- */
+$font-primary: 'Inter', sans-serif;
+
+// Colors
+$color-bg: #f0f2f5; // Light Grey Background
+$color-card-bg: #ffffff; // White Card
+$color-text-main: #1f2937; // Dark Text
+$color-text-muted: #6b7280; // Grey Text
+$color-primary: #2563eb; // Blue (Add Friend)
+$color-primary-hover: #1d4ed8;
+$color-danger: #ef4444; // Red (Remove)
+$color-danger-bg: #fee2e2; // Light Red bg
+
+// Spacing & Radius
+$spacing-md: 1.5rem;
+$spacing-sm: 0.75rem;
+$radius-card: 16px;
+$radius-btn: 8px;
+$shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+/* --- 2. Global Resets --- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-primary;
+    background-color: $color-bg;
+    color: $color-text-main;
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 2rem; // Cards se doori
+        padding-top: 2rem;
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1f2937; // Dark Grey
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #6b7280; // Light Grey
+            font-size: 1.1rem;
+        }
+    }
+}
+
+/* --- 3. Layout (Centering Magic) --- */
+.main-container {
+    min-height: 100vh; // Full viewport height
+    width: 100%;
+    display: flex; // Flexbox enable
+    flex-wrap: wrap;
+    justify-content: center; // Horizontal center
+    align-items: center; // Vertical center
+    padding: $spacing-md;
+}
+
+/* --- 4. Profile Card Component --- */
+
+.profile-card {
+    background-color: $color-card-bg;
+    width: 100%;
+    max-width: 300px; // Card zyada chouda na ho
+    border-radius: $radius-card;
+    box-shadow: $shadow-card;
+    overflow: hidden; // Radius ke bahar content na jaye
+    text-align: center; // Text center
+    padding: $spacing-md * 1.5; // Thoda extra padding
+    transition: transform 0.3s ease;
+    margin: 1.5rem;
+
+    &:hover {
+        transform: translateY(-5px); // Hover par thoda uthega
+    }
+
+    // Image Styling
+    .profile-image-wrapper {
+        margin-bottom: $spacing-sm;
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover; // Image stretch nahi hogi
+            border-radius: 50%; // Perfect Circle
+            border: 4px solid $color-bg; // Image ke around ring
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            // object-position: top;
+        }
+    }
+
+    // Text Content
+    .profile-content {
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-role {
+            font-size: 0.9rem;
+            color: $color-text-muted;
+            margin-bottom: $spacing-md;
+        }
+
+        // Ye code .profile-content ke andar aayega
+        .profile-stats {
+            margin-top: 1rem; // Role se thoda door
+            margin-bottom: 1.5rem; // Button se thoda door
+            display: flex;
+            justify-content: center;
+            align-items: baseline; // Text aur number ek line mein
+            gap: 5px; // Number aur Text ke beech gap
+
+            .stat-count {
+                font-size: 1.4rem; // Number bada dikhega
+                font-weight: 800; // Extra Bold
+                color: $color-text-main; // Dark Color (Not Red!)
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+                color: $color-text-muted; // Halka Grey
+                font-weight: 500;
+                text-transform: uppercase; // "FOLLOWERS" capital mein professional lagta hai
+                letter-spacing: 1px; // Thoda khula-khula text
+            }
+        }
+
+    }
+
+    // Buttons Container
+    .action-buttons {
+        display: flex;
+        gap: $spacing-sm; // Buttons ke beech space
+        justify-content: center;
+    }
+}
+
+/* --- 5. Button Components --- */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: $radius-btn;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1; // Dono buttons equal width lenge
+
+    // Variant: Add Friend (Primary)
+    &--primary {
+        background-color: $color-primary;
+        color: white;
+
+        &:hover {
+            background-color: $color-primary-hover;
+            box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+        }
+    }
+
+    // Variant: Remove (Danger/Secondary)
+    &--danger {
+        background-color: white;
+        color: $color-danger;
+        border: 1px solid $color-danger;
+
+        &:hover {
+            background-color: $color-danger-bg;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+}
