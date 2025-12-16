@@ -30,7 +30,7 @@ const userProfiles = [
 const container = document.querySelector('.main-container');
 
 // Purana content saaf karo (Optional safety)
-container.innerHTML = ''; 
+container.innerHTML = '';
 
 userProfiles.forEach(user => {
     // Har user ke liye HTML structure
@@ -54,7 +54,7 @@ userProfiles.forEach(user => {
             </div>
         </article>
     `;
-    
+
     // Container mein jod do
     container.innerHTML += cardHTML;
 });
@@ -76,7 +76,7 @@ btns.forEach((btn) => {
 
     let count = 0; // 0 = Stranger, 1 = Request Sent/Friend
     // Har card ke liye alag random number
-    let followState = Math.floor(Math.random() * (901 - 300 + 1)) + 300; 
+    let followState = Math.floor(Math.random() * (901 - 300 + 1)) + 300;
     let timer;
 
     // Initial random number set karna

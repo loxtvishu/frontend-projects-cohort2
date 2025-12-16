@@ -11,6 +11,7 @@ $color-primary-hover: #1d4ed8;
 $color-danger: #ef4444; // Red (Remove)
 $color-danger-bg: #fee2e2; // Light Red bg
 
+
 // Spacing & Radius
 $spacing-md: 1.5rem;
 $spacing-sm: 0.75rem;
@@ -30,6 +31,8 @@ body {
     font-family: $font-primary;
     background-color: $color-bg;
     color: $color-text-main;
+
+    
 
     .page-header {
         text-align: center;
