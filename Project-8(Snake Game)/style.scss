@@ -26,7 +26,8 @@
     --font-3xl: 48px;
     --bg-primary-color: #0c0c0c;
     --text-primary-color: #f0f0f0;
-    --bg-fill-color:rgb(217, 223, 223);
+    --bg-fill-color: rgb(217, 223, 223);
+    --bg-food-color: rgb(223, 135, 63);
     /* Border Colors */
 
     --border-primary-color: #333333;
@@ -57,37 +58,43 @@ section {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
-    padding:  var(--space-md);
+    padding: var(--space-md);
     padding-bottom: var(--space-sm);
 
     .infos {
         display: flex;
         justify-content: space-between;
-        
+
         .info {
             cursor: pointer;
-            padding: var(--space-md) ;
+            padding: var(--space-md);
             font-size: var(--font-md);
             background: var(--bg-primary-color);
             border-radius: var(--border-radius-sm);
             border: 1px solid var(--border-primary-color);
         }
     }
-    .board{
+
+    .board {
         border: 2px solid var(--border-primary-color);
         flex-grow: 1;
         display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
-        grid-template-rows: repeat(auto-fill,minmax(50px,1fr));
-        .block{
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+
+        .block {
             // height: 30px;
             // width: 30px;
             border: 1px solid var(--border-primary-color);
 
         }
 
-    .fill{
-        background-color: var(--bg-fill-color);
-    }
+        .fill {
+            background-color: var(--bg-fill-color);
+        }
+
+        .food {
+            background-color: var(--bg-food-color);
+        }
     }
 }

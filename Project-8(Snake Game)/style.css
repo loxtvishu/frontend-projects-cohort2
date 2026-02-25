@@ -22,7 +22,8 @@
   --font-3xl: 48px;
   --bg-primary-color: #0c0c0c;
   --text-primary-color: #f0f0f0;
-  --bg-fill-color:rgb(217, 223, 223);
+  --bg-fill-color: rgb(217, 223, 223);
+  --bg-food-color: rgb(223, 135, 63);
   /* Border Colors */
   --border-primary-color: #333333;
   /* Border Radius */
@@ -81,4 +82,8 @@ section .board .block {
 main .board .fill,
 section .board .fill {
   background-color: var(--bg-fill-color);
+}
+main .board .food,
+section .board .food {
+  background-color: var(--bg-food-color);
 }/*# sourceMappingURL=style.css.map */

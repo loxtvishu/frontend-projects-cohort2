@@ -15,25 +15,82 @@ for (let row = 0; row < rows; row++) {
         blocks[`${row}-${col}`] = block
     }
 }
-
+const PositionX = Math.floor(Math.random() * rows);
+const PositionY = Math.floor(Math.random() * (cols - 3));
 const snake = [{
-    x: 2, y: 3
+    x: PositionX, y: PositionY
 },
 {
-    x: 2, y: 4
+    x: PositionX, y: PositionY + 1
 },
 {
-    x: 2, y: 5
+    x: PositionX, y: PositionY + 2
 }]
 
-function render() {
-    snake.forEach(segment => {
-        blocks[`${segment.x}-${segment.y}`].classList.add("fill");
-
-    })
+let snakeFood = {
+    x: Math.floor(Math.random() * rows),
+    y: Math.floor(Math.random() * cols),
 }
 
-setInterval(() => {
+let direction = 'left'
+function render() {
+    let head = null
+    if (direction === 'left') {
+        head = { x: snake[0].x, y: snake[0].y - 1 }
+    } else if (direction === 'right') {
+        head = { x: snake[0].x, y: snake[0].y + 1 }
+    } else if (direction === 'up') {
+        head = { x: snake[0].x - 1, y: snake[0].y }
+    } else if (direction === 'down') {
+        head = { x: snake[0].x + 1, y: snake[0].y }
+    }
+    blocks[`${snakeFood.x}-${snakeFood.y}`].classList.add('food');
+    
+    if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
+        alert("Game Over!");
+        clearInterval(intervalID);
+    }
+
+    if (head.x == snakeFood.x && head.y == snakeFood.y) {
+        blocks[`${snakeFood.x}-${snakeFood.y}`].classList.remove("food");
+        snakeFood = {
+            x: Math.floor(Math.random() * rows),
+            y: Math.floor(Math.random() * cols),
+        }
+        blocks[`${snakeFood.x}-${snakeFood.y}`].classList.add('food');
+    }
+    snake.unshift(head);
+    snake.forEach(segment => {
+        const block = blocks[`${segment.x}-${segment.y}`];
+        if (block) {
+            block.classList.remove("fill");
+        }
+    })
+    snake.pop();
+    snake.forEach(segment => {
+        const block = blocks[`${segment.x}-${segment.y}`];
+        if (block) {
+            block.classList.add("fill");
+        }
+    })
+
+}
+
+let intervalID = null
+intervalID = setInterval(() => {
     render();
 }, 300)
 
+
+addEventListener("keydown", function (event) {
+    if (event.key === "ArrowUp") {
+        direction = "up";
+    } else if (event.key === "ArrowDown") {
+        direction = "down";
+    } else if (event.key === "ArrowRight") {
+        direction = "right"
+    } else if (event.key === "ArrowLeft") {
+        direction = "left"
+    }
+
+});
